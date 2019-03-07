@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hot Restaurant</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid" id="heading">
+        <div class="jumbotron jumbotron-fluid">
+            <h1 class="display-4">Hot Restaurant</h1>
+            <p class="lead">Make your reservation</p>
+            <hr class="my-4">
+            <a class="btn btn-primary btn-lg" href="view.html" role="button">View Tables</a>
+            <a class="btn btn-primary btn-lg" href="home.html" role="button">Home</a>
+        </div>
+    </div>
+    <div class="container-fluid card" id="make-res">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputName">Name</label>
+                <input type="name" class="form-control" id="name">
+            </div>
+        </form>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputNumber">Phone Number</label>
+                <input type="name" class="form-control" id="phone">
+            </div>
+        </form>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail">Email Address</label>
+                <input type="name" class="form-control" id="email">
+            </div>
+        </form>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputID">Unique ID</label>
+                <input type="name" class="form-control" id="custID">
+            </div>
+        </form>
+        <a class="btn btn-primary" id="submit-btn" href="#" role="button">Submit</a>
+    </div>
+    <footer>
+        <a href="###" id="need-border">API Table Link</a>
+        <a href="###">API Wait List</a>
+    </footer>
+
+    <script type="text/javascript">
+
+        $("#add-btn").on("click", function(event) {
+            event.preventDefault();
+    
+            var newCustomer = {
+                name: $("#name").val().trim(),
+                phone: $("#phone").val().trim(),
+                email: $("#email").val().trim(),
+                cust_ID: $("#custID").val().trim()
+            };
+    
+            $.post("/api/tables", newCustomer)
+            .then(function(data) {
+                console.log(data);
+                alert("Adding customer");
+            });
+    
+
+            // $.post("/api/waitlist", newCustomer)
+            // .then(function(data) {
+            //     console.log(data);
+            //     alert("Sorry, our tables are")
+            // })
+    
+        });
+    </script>
+</body>
+</html>
